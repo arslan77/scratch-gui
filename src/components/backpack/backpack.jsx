@@ -41,117 +41,118 @@ const labelMap = defineMessages({
 });
 
 const Backpack = ({
-    blockDragOver,
-    containerRef,
-    contents,
-    dragOver,
-    error,
-    expanded,
-    intl,
-    loading,
-    showMore,
-    onToggle,
-    onDelete,
-    onMouseEnter,
-    onMouseLeave,
-    onMore
-}) => (
-    <div className={styles.backpackContainer}>
-        <div
-            className={styles.backpackHeader}
-            onClick={onToggle}
-        >
-            {onToggle ? (
-                <FormattedMessage
-                    defaultMessage="Backpack"
-                    description="Button to open the backpack"
-                    id="gui.backpack.header"
-                />
-            ) : (
-                <ComingSoonTooltip
-                    place="top"
-                    tooltipId="backpack-tooltip"
-                >
-                    <FormattedMessage
-                        defaultMessage="Backpack"
-                        description="Button to open the backpack"
-                        id="gui.backpack.header"
-                    />
-                </ComingSoonTooltip>
-            )}
-        </div>
-        {expanded ? (
-            <div
-                className={classNames(styles.backpackList, {
-                    [styles.dragOver]: dragOver || blockDragOver
-                })}
-                ref={containerRef}
-                onMouseEnter={onMouseEnter}
-                onMouseLeave={onMouseLeave}
-            >
-                {error ? (
-                    <div className={styles.statusMessage}>
-                        <FormattedMessage
-                            defaultMessage="Error loading backpack"
-                            description="Error backpack message"
-                            id="gui.backpack.errorBackpack"
-                        />
-                    </div>
-                ) : (
-                    loading ? (
-                        <div className={styles.statusMessage}>
-                            <FormattedMessage
-                                defaultMessage="Loading..."
-                                description="Loading backpack message"
-                                id="gui.backpack.loadingBackpack"
-                            />
-                        </div>
-                    ) : (
-                        contents.length > 0 ? (
-                            <div className={styles.backpackListInner}>
-                                {contents.map(item => (
-                                    <SpriteSelectorItem
-                                        className={styles.backpackItem}
-                                        costumeURL={item.thumbnailUrl}
-                                        details={item.name}
-                                        dragPayload={item}
-                                        dragType={dragTypeMap[item.type]}
-                                        id={item.id}
-                                        key={item.id}
-                                        name={intl.formatMessage(labelMap[item.type])}
-                                        selected={false}
-                                        onClick={noop}
-                                        onDeleteButtonClick={onDelete}
-                                    />
-                                ))}
-                                {showMore && (
-                                    <button
-                                        className={styles.more}
-                                        onClick={onMore}
-                                    >
-                                        <FormattedMessage
-                                            defaultMessage="More"
-                                            description="Load more from backpack"
-                                            id="gui.backpack.more"
-                                        />
-                                    </button>
-                                )}
-                            </div>
-                        ) : (
-                            <div className={styles.statusMessage}>
-                                <FormattedMessage
-                                    defaultMessage="Backpack is empty"
-                                    description="Empty backpack message"
-                                    id="gui.backpack.emptyBackpack"
-                                />
-                            </div>
-                        )
-                    )
-                )}
-            </div>
-        ) : null}
-    </div>
-);
+    // blockDragOver,
+    // containerRef,
+    // contents,
+    // dragOver,
+    // error,
+    // expanded,
+    // intl,
+    // loading,
+    // showMore,
+    // onToggle,
+    // onDelete,
+    // onMouseEnter,
+    // onMouseLeave,
+    // onMore
+}) => (true);
+// (
+//     <div className={styles.backpackContainer}>
+//         <div
+//             className={styles.backpackHeader}
+//             onClick={onToggle}
+//         >
+//             {onToggle ? (
+//                 <FormattedMessage
+//                     defaultMessage="Backpack"
+//                     description="Button to open the backpack"
+//                     id="gui.backpack.header"
+//                 />
+//             ) : (
+//                 <ComingSoonTooltip
+//                     place="top"
+//                     tooltipId="backpack-tooltip"
+//                 >
+//                     <FormattedMessage
+//                         defaultMessage="Backpack"
+//                         description="Button to open the backpack"
+//                         id="gui.backpack.header"
+//                     />
+//                 </ComingSoonTooltip>
+//             )}
+//         </div>
+//         {expanded ? (
+//             <div
+//                 className={classNames(styles.backpackList, {
+//                     [styles.dragOver]: dragOver || blockDragOver
+//                 })}
+//                 ref={containerRef}
+//                 onMouseEnter={onMouseEnter}
+//                 onMouseLeave={onMouseLeave}
+//             >
+//                 {error ? (
+//                     <div className={styles.statusMessage}>
+//                         <FormattedMessage
+//                             defaultMessage="Error loading backpack"
+//                             description="Error backpack message"
+//                             id="gui.backpack.errorBackpack"
+//                         />
+//                     </div>
+//                 ) : (
+//                     loading ? (
+//                         <div className={styles.statusMessage}>
+//                             <FormattedMessage
+//                                 defaultMessage="Loading..."
+//                                 description="Loading backpack message"
+//                                 id="gui.backpack.loadingBackpack"
+//                             />
+//                         </div>
+//                     ) : (
+//                         contents.length > 0 ? (
+//                             <div className={styles.backpackListInner}>
+//                                 {contents.map(item => (
+//                                     <SpriteSelectorItem
+//                                         className={styles.backpackItem}
+//                                         costumeURL={item.thumbnailUrl}
+//                                         details={item.name}
+//                                         dragPayload={item}
+//                                         dragType={dragTypeMap[item.type]}
+//                                         id={item.id}
+//                                         key={item.id}
+//                                         name={intl.formatMessage(labelMap[item.type])}
+//                                         selected={false}
+//                                         onClick={noop}
+//                                         onDeleteButtonClick={onDelete}
+//                                     />
+//                                 ))}
+//                                 {showMore && (
+//                                     <button
+//                                         className={styles.more}
+//                                         onClick={onMore}
+//                                     >
+//                                         <FormattedMessage
+//                                             defaultMessage="More"
+//                                             description="Load more from backpack"
+//                                             id="gui.backpack.more"
+//                                         />
+//                                     </button>
+//                                 )}
+//                             </div>
+//                         ) : (
+//                             <div className={styles.statusMessage}>
+//                                 <FormattedMessage
+//                                     defaultMessage="Backpack is empty"
+//                                     description="Empty backpack message"
+//                                     id="gui.backpack.emptyBackpack"
+//                                 />
+//                             </div>
+//                         )
+//                     )
+//                 )}
+//             </div>
+//         ) : null}
+//     </div>
+// );
 
 Backpack.propTypes = {
     blockDragOver: PropTypes.bool,
