@@ -16,7 +16,7 @@ var postcssImport = require('postcss-import');
 const STATIC_PATH = process.env.STATIC_PATH || '/static';
 
 const base = {
-    mode: 'development',
+    mode: 'production',
     devtool: 'cheap-module-source-map',
     devServer: {
         contentBase: path.resolve(__dirname, 'build'),
@@ -188,7 +188,7 @@ module.exports = [
         ])
     })
 ].concat(
-    process.env.NODE_ENV === 'production' || process.env.BUILD_MODE === 'dist' ? (
+    process.env.NODE_ENV === 'production' || process.env.BUILD_MODE === 'dist' || true ? (
         // export as library
         defaultsDeep({}, base, {
             target: 'web',
