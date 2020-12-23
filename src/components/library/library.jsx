@@ -64,6 +64,7 @@ class LibraryComponent extends React.Component {
         }
     }
     handleSelect (id) {
+        console.log({id});
         this.handleClose();
         this.props.onItemSelected(this.getFilteredData()[id]);
     }

@@ -13,6 +13,8 @@ import LibraryComponent from '../components/library/library.jsx';
 
 import {connect} from 'react-redux';
 
+import {withRouter} from 'react-router';
+
 import {
     closeTipsLibrary
 } from '../reducers/modals';
@@ -60,6 +62,40 @@ class TipsLibrary extends React.PureComponent {
 
         this.props.onActivateDeck(item.id);
     }
+
+    componentDidMount () {
+        const tuIteme = Object.keys(decksLibraryContent)
+            .filter(id => {
+                if (notScratchDesktop()) return true; // Do not filter anything in online editor
+                const deck = decksLibraryContent[id];
+                // Scratch Desktop doesn't want tutorials with `requiredProjectId`
+                if (deck.hasOwnProperty('requiredProjectId')) return false;
+                // Scratch Desktop should not load tutorials that are _only_ videos
+                if (deck.steps.filter(s => s.title).length === 0) return false;
+                // Allow any other tutorials
+                return true;
+            })
+            .map(id => ({
+                rawURL: decksLibraryContent[id].img,
+                id: id,
+                name: decksLibraryContent[id].name,
+                featured: true,
+                tags: decksLibraryContent[id].tags,
+                urlId: decksLibraryContent[id].urlId,
+                requiredProjectId: decksLibraryContent[id].requiredProjectId,
+                hidden: decksLibraryContent[id].hidden || false
+            }));
+        // console.log({tuItems: tuIteme[0].id})
+        console.log({props: this.props});
+        const search = this.props.location.search;
+        const params = new URLSearchParams(search);
+        const id = params.get('id');
+        if(id!==null){
+            this.handleItemSelect(tuIteme[id]);
+        }
+
+    }
+
     render () {
         const decksLibraryThumbnailData = Object.keys(decksLibraryContent)
             .filter(id => {
@@ -82,7 +118,7 @@ class TipsLibrary extends React.PureComponent {
                 requiredProjectId: decksLibraryContent[id].requiredProjectId,
                 hidden: decksLibraryContent[id].hidden || false
             }));
-
+        console.log({decksLibraryThumbnailData})
         if (!this.props.visible) return null;
         return (
             <LibraryComponent
@@ -120,4 +156,4 @@ const mapDispatchToProps = dispatch => ({
 export default injectIntl(connect(
     mapStateToProps,
     mapDispatchToProps
-)(TipsLibrary));
+)(withRouter(TipsLibrary)));

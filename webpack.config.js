@@ -1,3 +1,4 @@
+
 const defaultsDeep = require('lodash.defaultsdeep');
 var path = require('path');
 var webpack = require('webpack');
@@ -15,7 +16,7 @@ var postcssImport = require('postcss-import');
 const STATIC_PATH = process.env.STATIC_PATH || '/static';
 
 const base = {
-    mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
+    mode: 'development',
     devtool: 'cheap-module-source-map',
     devServer: {
         contentBase: path.resolve(__dirname, 'build'),

@@ -40,6 +40,9 @@ import codeIcon from './icon--code.svg';
 import costumesIcon from './icon--costumes.svg';
 import soundsIcon from './icon--sounds.svg';
 
+import {Router} from 'react-router';
+import history from '../../utils/history';
+
 const messages = defineMessages({
     addExtension: {
         id: 'gui.gui.addExtension',
@@ -149,7 +152,7 @@ const GUIComponent = props => {
                 vm={vm}
             >
                 {alertsVisible ? (
-                    <Alerts className={styles.alertsContainer} />
+                    <Alerts className={styles.alertsContainer}/>
                 ) : null}
             </StageWrapper>
         ) : (
@@ -168,22 +171,22 @@ const GUIComponent = props => {
                     />
                 ) : null}
                 {loading ? (
-                    <Loader />
+                    <Loader/>
                 ) : null}
                 {isCreating ? (
-                    <Loader messageId="gui.loader.creating" />
+                    <Loader messageId="gui.loader.creating"/>
                 ) : null}
                 {isRendererSupported ? null : (
-                    <WebGlModal isRtl={isRtl} />
+                    <WebGlModal isRtl={isRtl}/>
                 )}
-                {tipsLibraryVisible ? (
+                <Router history={history}>
                     <TipsLibrary />
-                ) : null}
+                </Router>
                 {cardsVisible ? (
-                    <Cards />
+                    <Cards/>
                 ) : null}
                 {alertsVisible ? (
-                    <Alerts className={styles.alertsContainer} />
+                    <Alerts className={styles.alertsContainer}/>
                 ) : null}
                 {connectionModalVisible ? (
                     <ConnectionModal
@@ -319,18 +322,18 @@ const GUIComponent = props => {
                                         </button>
                                     </Box>
                                     <Box className={styles.watermark}>
-                                        <Watermark />
+                                        <Watermark/>
                                     </Box>
                                 </TabPanel>
                                 <TabPanel className={tabClassNames.tabPanel}>
-                                    {costumesTabVisible ? <CostumeTab vm={vm} /> : null}
+                                    {costumesTabVisible ? <CostumeTab vm={vm}/> : null}
                                 </TabPanel>
                                 <TabPanel className={tabClassNames.tabPanel}>
-                                    {soundsTabVisible ? <SoundTab vm={vm} /> : null}
+                                    {soundsTabVisible ? <SoundTab vm={vm}/> : null}
                                 </TabPanel>
                             </Tabs>
                             {backpackVisible ? (
-                                <Backpack host={backpackHost} />
+                                <Backpack host={backpackHost}/>
                             ) : null}
                         </Box>
 
@@ -351,7 +354,7 @@ const GUIComponent = props => {
                         </Box>
                     </Box>
                 </Box>
-                <DragLayer />
+                <DragLayer/>
             </Box>
         );
     }}</MediaQuery>);
@@ -438,9 +441,9 @@ GUIComponent.defaultProps = {
     isShared: false,
     loading: false,
     showComingSoon: false,
-    stageSizeMode: STAGE_SIZE_MODES.large
+    stageSizeMode: STAGE_SIZE_MODES.large,
+    my_id: 0
 };
-
 const mapStateToProps = state => ({
     // This is the button's mode, as opposed to the actual current state
     stageSizeMode: state.scratchGui.stageSize.stageSize
