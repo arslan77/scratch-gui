@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import bindAll from 'lodash.bindall';
 import bowser from 'bowser';
 import React from 'react';
-
+import $ from 'jquery';
 import VM from 'scratch-vm';
 
 import Box from '../box/box.jsx';
@@ -74,6 +74,7 @@ import aboutIcon from './icon--about.svg';
 import scratchLogo from './robotwalatext.png';
 
 import sharedMessages from '../../lib/shared-messages';
+import downloadBlob from '../../lib/download-blob';
 
 const ariaMessages = defineMessages({
     language: {
@@ -165,6 +166,7 @@ class MenuBar extends React.Component {
             'handleClickSaveAsCopy',
             'handleClickSeeCommunity',
             'handleClickShare',
+            'handleClickShare2',
             'handleKeyPress',
             'handleLanguageMouseUp',
             'handleRestoreOption',
@@ -172,12 +174,15 @@ class MenuBar extends React.Component {
             'restoreOptionMessage'
         ]);
     }
+
     componentDidMount () {
         document.addEventListener('keydown', this.handleKeyPress);
     }
+
     componentWillUnmount () {
         document.removeEventListener('keydown', this.handleKeyPress);
     }
+
     handleClickNew () {
         // if the project is dirty, and user owns the project, we will autosave.
         // but if they are not logged in and can't save, user should consider
@@ -193,18 +198,23 @@ class MenuBar extends React.Component {
         }
         this.props.onRequestCloseFile();
     }
+
+
     handleClickRemix () {
         this.props.onClickRemix();
         this.props.onRequestCloseFile();
     }
+
     handleClickSave () {
         this.props.onClickSave();
         this.props.onRequestCloseFile();
     }
+
     handleClickSaveAsCopy () {
         this.props.onClickSaveAsCopy();
         this.props.onRequestCloseFile();
     }
+
     handleClickSeeCommunity (waitForUpdate) {
         if (this.props.shouldSaveBeforeTransition()) {
             this.props.autoUpdateProject(); // save before transitioning to project page
@@ -213,6 +223,7 @@ class MenuBar extends React.Component {
             waitForUpdate(false); // immediately transition to project page
         }
     }
+
     handleClickShare (waitForUpdate) {
         if (!this.props.isShared) {
             if (this.props.canShare) { // save before transitioning to project page
@@ -226,12 +237,59 @@ class MenuBar extends React.Component {
             }
         }
     }
+
+
+    handleClickShare2 (waitForUpdate) {
+
+        this.props.saveProjectSb3()
+            .then(content => {
+
+                const formData = new FormData();
+                formData.append('project_file', content);
+                formData.append('project_name', 'Test Project');
+                formData.append('user_id', localStorage.getItem('userId'));
+
+                $.ajax({
+                    url: '/community/project/share',
+                    method: 'POST',
+                    data: formData,
+                    dataType: 'json',
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    success: (resp) => {
+                        // eslint-disable-next-line no-debugger
+                        debugger;
+                    },
+                    error: (err, obj, obj1) => {
+                        debugger;
+                    }
+                });
+            });
+
+        // eslint-disable-next-line no-undef
+
+
+        // if (!this.props.isShared) {
+        //     if (this.props.canShare) { // save before transitioning to project page
+        //         this.props.onShare();
+        //     }
+        //     if (this.props.canSave) { // save before transitioning to project page
+        //         this.props.autoUpdateProject();
+        //         waitForUpdate(true); // queue the transition to project page
+        //     } else {
+        //         waitForUpdate(false); // immediately transition to project page
+        //     }
+        // }
+    }
+
     handleRestoreOption (restoreFun) {
         return () => {
             restoreFun();
             this.props.onRequestCloseEdit();
         };
     }
+
     handleKeyPress (event) {
         const modifier = bowser.mac ? event.metaKey : event.ctrlKey;
         if (modifier && event.key === 's') {
@@ -239,6 +297,7 @@ class MenuBar extends React.Component {
             event.preventDefault();
         }
     }
+
     getSaveToComputerHandler (downloadProjectCallback) {
         return () => {
             this.props.onRequestCloseFile();
@@ -249,11 +308,13 @@ class MenuBar extends React.Component {
             }
         };
     }
+
     handleLanguageMouseUp (e) {
         if (!this.props.languageMenuOpen) {
             this.props.onClickLanguage(e);
         }
     }
+
     restoreOptionMessage (deletedItem) {
         switch (deletedItem) {
         case 'Sprite':
@@ -283,12 +344,20 @@ class MenuBar extends React.Component {
         }
         }
     }
+
     render () {
         const saveNowMessage = (
             <FormattedMessage
                 defaultMessage="Save now"
                 description="Menu bar item for saving now"
                 id="gui.menuBar.saveNow"
+            />
+        );
+        const shareNowMessage = (
+            <FormattedMessage
+                defaultMessage="Share"
+                description="Share this project with RobotWala"
+                id="gui.menuBar.shareNow"
             />
         );
         const createCopyMessage = (
@@ -307,7 +376,7 @@ class MenuBar extends React.Component {
         );
         const newProjectMessage = (
             <FormattedMessage
-                defaultMessage="New"
+                defaultMessage="New Project"
                 description="Menu bar item for creating a new project"
                 id="gui.menuBar.new"
             />
@@ -326,7 +395,7 @@ class MenuBar extends React.Component {
             </Button>
         );
         // Show the About button only if we have a handler for it (like in the desktop app)
-        const aboutButton = this.props.onClickAbout ? <AboutButton onClick={this.props.onClickAbout} /> : null;
+        const aboutButton = this.props.onClickAbout ? <AboutButton onClick={this.props.onClickAbout}/> : null;
         return (
             <Box
                 className={classNames(
@@ -360,7 +429,7 @@ class MenuBar extends React.Component {
                                     src={dropdownCaret}
                                 />
                             </div>
-                            <LanguageSelector label={this.props.intl.formatMessage(ariaMessages.language)} />
+                            <LanguageSelector label={this.props.intl.formatMessage(ariaMessages.language)}/>
                         </div>)}
                         {(this.props.canManageFiles) && (
                             <div
@@ -387,7 +456,11 @@ class MenuBar extends React.Component {
                                         >
                                             {newProjectMessage}
                                         </MenuItem>
+                                        <MenuItem onClick={this.handleClickShare2}>
+                                            {shareNowMessage}
+                                        </MenuItem>
                                     </MenuSection>
+
                                     {(this.props.canSave || this.props.canCreateCopy || this.props.canRemix) && (
                                         <MenuSection>
                                             {this.props.canSave && (
@@ -395,6 +468,13 @@ class MenuBar extends React.Component {
                                                     {saveNowMessage}
                                                 </MenuItem>
                                             )}
+
+                                            {this.props.canSave && (
+                                                <MenuItem onClick={this.handleClickShare}>
+                                                    {shareNowMessage}
+                                                </MenuItem>
+                                            )}
+
                                             {this.props.canCreateCopy && (
                                                 <MenuItem onClick={this.handleClickSaveAsCopy}>
                                                     {createCopyMessage}
@@ -408,6 +488,7 @@ class MenuBar extends React.Component {
                                         </MenuSection>
                                     )}
                                     <MenuSection>
+
                                         <SBFileUploader
                                             canSave={this.props.canSave}
                                             userOwnsProject={this.props.userOwnsProject}
@@ -436,6 +517,7 @@ class MenuBar extends React.Component {
                                                 />
                                             </MenuItem>
                                         )}</SB3Downloader>
+
                                     </MenuSection>
                                 </MenuBarMenu>
                             </div>
@@ -489,18 +571,6 @@ class MenuBar extends React.Component {
                             </MenuBarMenu>
                         </div>
                     </div>
-                    <Divider className={classNames(styles.divider)} />
-                    {/**
-                     // eslint-disable-next-line max-len
-                     <div aria-label={this.props.intl.formatMessage(ariaMessages.tutorials)} className={classNames(styles.menuBarItem, styles.hoverable)} onClick={this.props.onOpenTipLibrary}>
-                        <img
-                            className={styles.helpIcon}
-                            src={helpIcon}
-                        />
-                        <FormattedMessage {...ariaMessages.tutorials} />
-                    </div>
-                     **/}
-                    <Divider className={classNames(styles.divider)} />
                     {this.props.canEditTitle ? (
                         <div className={classNames(styles.menuBarItem, styles.growable)}>
                             <MenuBarItemTooltip
@@ -589,18 +659,23 @@ MenuBar.propTypes = {
     showComingSoon: PropTypes.bool,
     userOwnsProject: PropTypes.bool,
     username: PropTypes.string,
+    saveProjectSb3: PropTypes.func,
     vm: PropTypes.instanceOf(VM).isRequired
 };
 
 MenuBar.defaultProps = {
     logo: scratchLogo,
-    onShare: () => {}
+    onShare: () => {
+    }
 };
 
 const mapStateToProps = (state, ownProps) => {
     const loadingState = state.scratchGui.projectState.loadingState;
     const user = state.session && state.session.session && state.session.session.user;
+    // ownProps.;
+
     return {
+        saveProjectSb3: state.scratchGui.vm.saveProjectSb3.bind(state.scratchGui.vm),
         accountMenuOpen: accountMenuOpen(state),
         fileMenuOpen: fileMenuOpen(state),
         editMenuOpen: editMenuOpen(state),

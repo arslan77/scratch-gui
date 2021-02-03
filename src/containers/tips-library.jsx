@@ -38,6 +38,7 @@ class TipsLibrary extends React.PureComponent {
             'handleItemSelect'
         ]);
     }
+
     handleItemSelect (item) {
         analytics.event({
             category: 'library',
@@ -86,12 +87,17 @@ class TipsLibrary extends React.PureComponent {
                 hidden: decksLibraryContent[id].hidden || false
             }));
         // console.log({tuItems: tuIteme[0].id})
+        // eslint-disable-next-line no-console
         console.log({props: this.props});
         const search = this.props.location.search;
         const params = new URLSearchParams(search);
         const id = params.get('id');
-        if(id!==null){
+        const userId = params.get('user_id');
+        if (id !== null) {
             this.handleItemSelect(tuIteme[id]);
+        }
+        if (userId !== null) {
+            localStorage.setItem('userId', userId);
         }
 
     }
@@ -118,7 +124,7 @@ class TipsLibrary extends React.PureComponent {
                 requiredProjectId: decksLibraryContent[id].requiredProjectId,
                 hidden: decksLibraryContent[id].hidden || false
             }));
-        console.log({decksLibraryThumbnailData})
+        console.log({decksLibraryThumbnailData});
         if (!this.props.visible) return null;
         return (
             <LibraryComponent
