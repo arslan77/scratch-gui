@@ -92,7 +92,7 @@ class TipsLibrary extends React.PureComponent {
         const search = this.props.location.search;
         const params = new URLSearchParams(search);
         const id = params.get('id');
-        const userId = params.get('user_id');
+        const userId = params.get('user');
         if (id !== null) {
             this.handleItemSelect(tuIteme[id]);
         }
