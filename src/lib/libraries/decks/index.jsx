@@ -128,7 +128,7 @@ export default {
         }, {
             title: (
                 <FormattedMessage
-                    defaultMessage="Pick a Letter Sprite"
+                    defaultMessage="Test me Pick a Letter Sprite"
                     description="Step name for 'Pick a Letter Sprite' step"
                     id="gui.howtos.animate-a-name.step_AnimatePickLetter"
                 />
@@ -345,7 +345,7 @@ export default {
         ],
         urlId: 'imagine'
     },
-    
+
     'Make-Music': {
         name: (
             <FormattedMessage
@@ -358,8 +358,7 @@ export default {
         tags: ['music', 'sound', 'instrument', 'play', 'song', 'band'],
         steps: [{
             video: 'Make-Music'
-        },
-        {
+        }, {
             title: (
                 <FormattedMessage
                     defaultMessage="Pick an Instrument Sprite "
@@ -368,8 +367,8 @@ export default {
                 />
             ),
             image: 'musicPickInstrument'
-        },
-        {
+
+        }, {
             title: (
                 <FormattedMessage
                     defaultMessage="Play Sound When Clicked"
@@ -378,8 +377,7 @@ export default {
                 />
             ),
             image: 'musicPlaySound'
-        },
-        {
+        }, {
             title: (
                 <FormattedMessage
                     defaultMessage="Create a Song"
@@ -427,8 +425,7 @@ export default {
         img: libraryStory,
         steps: [{
             video: 'stah7jjorp'
-        },
-        {
+        }, {
             title: (
                 <FormattedMessage
                     defaultMessage="Add a Backdrop"
@@ -518,8 +515,7 @@ export default {
                 />
             ),
             image: 'storyShowCharacter'
-        },
-        {
+        }, {
             deckIds: [
                 'say-it-out-loud',
                 'record-a-sound'
@@ -541,8 +537,7 @@ export default {
         tags: ['games', 'arrow', 'keyboard', 'score'],
         steps: [{
             video: 'Chase-Game'
-        },
-        {
+        }, {
             title: (
                 <FormattedMessage
                     defaultMessage="Add a Backdrop"
@@ -644,8 +639,7 @@ export default {
         img: libraryAnimateChar,
         steps: [{
             video: 's228u3g5u9'
-        },
-        {
+        }, {
             title: (
                 <FormattedMessage
                     defaultMessage="Add a Backdrop"
@@ -739,8 +733,7 @@ export default {
         tags: ['games', 'click', 'clicked', 'score'],
         steps: [{
             video: 'Make-A-Game'
-        },
-        {
+        }, {
             title: (
                 <FormattedMessage
                     defaultMessage="Pick A Sprite"
@@ -956,8 +949,7 @@ export default {
         img: libraryPong,
         steps: [{
             video: 'pong-game'
-        },
-        {
+        }, {
             title: (
                 <FormattedMessage
                     defaultMessage="Add a Backdrop"
@@ -1205,7 +1197,7 @@ export default {
         ],
         urlId: 'code-cartoon'
     },
-    
+
     'cartoon-network': {
         name: (
             <FormattedMessage
@@ -1293,11 +1285,9 @@ export default {
                 />
             ),
             image: 'cnBackdrop'
-        },
-        {
+        }, {
             video: '6o76f5ivo1'
-        },
-        {
+        }, {
             deckIds: [
                 'switch-costume',
                 'add-effects'
@@ -1318,8 +1308,7 @@ export default {
         img: libraryVideoSens,
         steps: [{
             video: '3pd1z110d6'
-        },
-        {
+        }, {
             title: (
                 <FormattedMessage
                     defaultMessage="Add Extension"
@@ -1670,9 +1659,7 @@ export default {
                 />
             ),
             image: 'addBackdrop'
-        },
-
-        {
+        }, {
             deckIds: [
                 'change-size',
                 'switch-costume'
