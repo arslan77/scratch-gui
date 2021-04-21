@@ -1994,5 +1994,221 @@ export default {
         }],
         urlId: 'whatsnew',
         hidden: true
+    },
+
+    'level1': {
+        name: (
+            <FormattedMessage
+                defaultMessage="Getting Started"
+                description="Name for the 'Getting Started' how-to"
+                id="gui.howtos.intro-move-sayhello-hat.name"
+            />
+        ),
+        tags: ['help', 'stuck', 'how', 'can', 'say'],
+        img: libraryIntro,
+        steps: [{
+            title: (
+                <FormattedMessage
+                    defaultMessage="Add a Backdrop"
+                    description="Step name for 'Add a Backdrop' step"
+                    id="gui.howtos.story.step_addbg"
+                />
+            ),
+            image: 'storyPickBackdrop'
+        }
+        ],
+        urlId: 'getStarted'
+    },
+
+    'level2': {
+        name: (
+            <FormattedMessage
+                defaultMessage="Getting Started"
+                description="Name for the 'Getting Started' how-to"
+                id="gui.howtos.intro-move-sayhello-hat.name"
+            />
+        ),
+        tags: ['help', 'stuck', 'how', 'can', 'say'],
+        img: libraryIntro,
+        steps: [{
+            title: (
+                <FormattedMessage
+                    defaultMessage="Add a Sprite"
+                    description="Step name for 'Add a Sprite' step"
+                    id="gui.howtos.chase-game.step_AddOcto"
+                />
+            ),
+            image: 'chaseGameAddSprite1'
+        }
+        ],
+        urlId: 'getStarted'
+    },
+
+    'level3': {
+        name: (
+            <FormattedMessage
+                defaultMessage="Getting Started"
+                description="Name for the 'Getting Started' how-to"
+                id="gui.howtos.intro-move-sayhello-hat.name"
+            />
+        ),
+        tags: ['help', 'stuck', 'how', 'can', 'say'],
+        img: libraryIntro,
+        steps: [{
+            title: (
+                <FormattedMessage
+                    defaultMessage="Move Left and Right"
+                    description="Step name for 'Move Left and Right' step"
+                    id="gui.howtos.add-a-backdrop.step_moveArrowKeysLeftRight"
+                />
+            ),
+            image: 'moveArrowKeysLeftRight'
+        }
+        ],
+        urlId: 'getStarted'
+    },
+
+    'level4': {
+        name: (
+            <FormattedMessage
+                defaultMessage="Getting Started"
+                description="Name for the 'Getting Started' how-to"
+                id="gui.howtos.intro-move-sayhello-hat.name"
+            />
+        ),
+        tags: ['help', 'stuck', 'how', 'can', 'say'],
+        img: libraryIntro,
+        steps: [{
+            title: (
+                <FormattedMessage
+                    defaultMessage="Move Right & Left With Arrow Keys"
+                    description="Step name for 'Move Right & Left With Arrow Keys' step"
+                    id="gui.howtos.make-music.step_LeftRight"
+                />
+            ),
+            image: 'chaseGameRightLeft'
+        }
+        ],
+        urlId: 'getStarted'
+    },
+
+    'level5': {
+        name: (
+            <FormattedMessage
+                defaultMessage="Getting Started"
+                description="Name for the 'Getting Started' how-to"
+                id="gui.howtos.intro-move-sayhello-hat.name"
+            />
+        ),
+        tags: ['help', 'stuck', 'how', 'can', 'say'],
+        img: libraryIntro,
+        steps: [{
+            title: (
+                <FormattedMessage
+                    defaultMessage="Add Another Sprite"
+                    description="Step name for 'Add Another Sprite' step"
+                    id="gui.howtos.Chase-Game.step_AddStar"
+                />
+            ),
+            image: 'chaseGameAddSprite2'
+        }
+        ],
+        urlId: 'getStarted'
+    },
+
+    'level6': {
+        name: (
+            <FormattedMessage
+                defaultMessage="Getting Started"
+                description="Name for the 'Getting Started' how-to"
+                id="gui.howtos.intro-move-sayhello-hat.name"
+            />
+        ),
+        tags: ['help', 'stuck', 'how', 'can', 'say'],
+        img: libraryIntro,
+        steps: [{
+            title: (
+                <FormattedMessage
+                    defaultMessage="Move Randomly"
+                    description="Step name for 'Move Randomly' step"
+                    id="gui.howtos.Chase-Game.step_MoveRandom"
+                />
+            ),
+            image: 'chaseGameMoveRandomly'
+        }
+        ],
+        urlId: 'getStarted'
+    },
+
+    'level7': {
+        name: (
+            <FormattedMessage
+                defaultMessage="Getting Started"
+                description="Name for the 'Getting Started' how-to"
+                id="gui.howtos.intro-move-sayhello-hat.name"
+            />
+        ),
+        tags: ['help', 'stuck', 'how', 'can', 'say'],
+        img: libraryIntro,
+        steps: [{
+            title: (
+                <FormattedMessage
+                    defaultMessage="In Octopus Sprite, When Touching Play Sound"
+                    description="Step name for 'In Octopus Sprite, When Touching Play Sound' step"
+                    id="gui.howtos.Chase-Game.step_WhenTouch"
+                />
+            ),
+            image: 'chaseGamePlaySound'
+        }
+        ],
+        urlId: 'getStarted'
+    },
+
+    'level8': {
+        name: (
+            <FormattedMessage
+                defaultMessage="Getting Started"
+                description="Name for the 'Getting Started' how-to"
+                id="gui.howtos.intro-move-sayhello-hat.name"
+            />
+        ),
+        tags: ['help', 'stuck', 'how', 'can', 'say'],
+        img: libraryIntro,
+        steps: [{
+            title: (
+                <FormattedMessage
+                    defaultMessage="Create Score Variable"
+                    description="Step name for 'Create Score Variable' step"
+                    id="gui.howtos.make-a-game.step_GameAddScore"
+                />
+            ),
+            image: 'popGameAddScore'
+        }
+        ],
+        urlId: 'getStarted'
+    },
+
+    'level9': {
+        name: (
+            <FormattedMessage
+                defaultMessage="Getting Started"
+                description="Name for the 'Getting Started' how-to"
+                id="gui.howtos.intro-move-sayhello-hat.name"
+            />
+        ),
+        tags: ['help', 'stuck', 'how', 'can', 'say'],
+        img: libraryIntro,
+        steps: [{
+            title: (
+                <FormattedMessage
+                    defaultMessage="In Octopus Sprite, When Touching Add Score"
+                    description="Step name for 'In Octopus Sprite, When Touching Add Score step"
+                    id="gui.howtos.Chase-Game.ScoreWhenTouch"
+                />
+            ),
+            image: 'chaseGameChangeScore'
+        }
+        ],
+        urlId: 'getStarted'
     }
 };
