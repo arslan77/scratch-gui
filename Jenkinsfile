@@ -11,6 +11,7 @@ node{
     sh label: 'run', script: ' docker run --rm -d --name scratch -p 122:80 scratch:latest'
     stage 'Remove Extra Images'
   //  sh label: 'remove', script: ' docker image prune -f -a'
+  //  sh label: 'remove', script: ' docker image prune -f -a'
     reply("JOB COMPLETED: <@UEWEG106N>, scratch.robotwala.org is back online", slackResponse.threadId, '#5ba50b')
 }
 def send(String message='Started', String color='#FFFF00'){
